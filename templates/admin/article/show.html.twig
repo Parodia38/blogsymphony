@@ -1,0 +1,26 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ article.title }}</h1>
+    <p>Crée le : {{ article.publishedAt|date('d-m-Y H:i:s') }}</p>
+    <p>Statut : {{ article.isActive ? 'Publié' : 'Brouillon' }}</p>
+    <p>Url : {{ article.slug }}</p>
+    <p>Catégorie : {{ article.category.name }}</p>
+    <p>{{ article.content }}</p>
+
+    {% if article.image is not null %}
+        <img src="{{ asset(article.image) }}" alt="Image">
+    {% endif %}
+
+    <p>
+        <a href="{{ path('article_index') }}" class="btn btn-outline-primary">Retour à la liste</a>
+    </p>
+
+    <p>
+        <a href="{{ path('article_edit', {'id': article.id}) }}" class="btn btn-primary">Modifier</a>
+    </p>
+
+    {{ include('admin/article/_delete_form.html.twig') }}
+{% endblock %}

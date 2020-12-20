@@ -1,0 +1,19 @@
+{% extends "site/blog/layout.html.twig" %}
+
+{% block title %}Le blog{% endblock %}
+
+{% block blogContent %}
+    <h1>Le blog</h1>
+
+    {% for article in articles %}
+        {% include 'site/blog/_card.html.twig' %}
+    {% else %}
+        <h2>Aucun article publié</h2>
+    {% endfor %}
+
+    <div class="d-flex justify-content-center">
+        {{ knp_pagination_render(articles) }}
+    </div>
+{% endblock %}
+
+

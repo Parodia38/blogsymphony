@@ -1,0 +1,41 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block content %}
+    <h1>Liste des utilisateurs</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Admin</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Inscrit le</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr {% if user.roles is empty %}class="bg-light"{% endif %}>
+                <td>{% if "ROLE_ADMIN" in user.roles %}Admin{% endif %}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.registerAt|date('d-m-Y') }}</td>
+                <td>
+                    <a href="{{ path('user_show', {'id': user.id}) }}">Voir</a>
+                    {% if user.id != app.user.id %}
+                        <a href="{{ path('user_edit', {'id': user.id}) }}">Modifier</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {{ knp_pagination_render(users) }}
+{% endblock %}

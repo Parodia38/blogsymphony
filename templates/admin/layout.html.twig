@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <header class="navbar navbar-dark bg-dark">
+        <div class="container-fluid d-flex justify-content-between">
+            <p class="text-light h3">Espace d'administration</p>
+            <a href="{{ path('site_index') }}" class="text-light">Retour au site</a>
+        </div>
+    </header>
+
+    <div class="container-fluid" style="background:linear-gradient(90deg, #f7f7f9 calc(25% - 15px), #fff calc(23.1% - 15px) );">
+
+        <div class="row pt-3" style="min-height: 87vh">
+            <aside class="col-3">
+                <nav>
+                    <ul class="list-unstyled">
+                        <li class="nav-item">
+                            <a href="{{ path('article_index') }}" class="nav-link {{ 'article' in app.request.attributes.get('_route') ? 'text-dark' }}">Article</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('category_index') }}" class="nav-link {{ 'category' in app.request.attributes.get('_route') ? 'text-dark' }}">Catégorie</a>
+                        </li>
+                        {% if is_granted('ROLE_SUPER') %}
+                            <li class="nav-item">
+                                <a href="{{ path('user_index') }}" class="nav-link {{ 'user' in app.request.attributes.get('_route') ? 'text-dark' }}">Utilisateur</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </aside>
+
+            <main class="col-lg-9">
+                {% include "utils/_flash.html.twig" %}
+
+                {% block content %}
+                {% endblock %}
+            </main>
+        </div>
+    </div>
+
+
+{% endblock %}

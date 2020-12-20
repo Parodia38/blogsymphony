@@ -1,0 +1,41 @@
+<?php //%255BApp%255CEntity%255CArticle%2524file%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Validator\\Constraints\\Image'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\Image')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'mimeTypes' => [
+                [
+                    'image/jpeg',
+                    'image/png',
+                ],
+            ],
+            'mimeTypesMessage' => [
+                'Le fichier doit être une JPG ou PNG',
+            ],
+            'binaryFormat' => [
+                false,
+            ],
+            'maxSizeMessage' => [
+                'Votre fichier doit faire moins de {{ limit }}',
+            ],
+            'groups' => [
+                [
+                    'Default',
+                ],
+            ],
+        ],
+        'Symfony\\Component\\Validator\\Constraints\\File' => [
+            'maxSize' => [
+                2000000,
+            ],
+        ],
+    ],
+    [
+        $o[0],
+    ],
+    []
+); }];

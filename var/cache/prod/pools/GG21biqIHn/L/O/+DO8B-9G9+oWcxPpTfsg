@@ -1,0 +1,19 @@
+<?php //%255BApp%255CEntity%255CArticle%255C%2524GEDMO_UPLOADABLE_CLASSMETADATA%255D%255B1%255D
+
+return [PHP_INT_MAX, [
+    'uploadable' => true,
+    'allowOverwrite' => false,
+    'appendNumber' => false,
+    'path' => 'uploads/article',
+    'pathMethod' => '',
+    'fileMimeTypeField' => false,
+    'fileNameField' => false,
+    'filePathField' => 'image',
+    'fileSizeField' => false,
+    'callback' => '',
+    'filenameGenerator' => 'SHA1',
+    'maxSize' => 0.0,
+    'allowedTypes' => false,
+    'disallowedTypes' => false,
+    'useObjectClass' => 'App\\Entity\\Article',
+]];

@@ -1,0 +1,43 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}Liste des articles{% endblock %}
+
+{% block content %}
+    <h1>Liste des articles</h1>
+
+    <p>
+        <a href="{{ path('article_new') }}" class="btn btn-primary">Ajouter un article</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Publié le</th>
+                <th>Actif ?</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.title }}</td>
+                <td>{{ article.content | u.truncate(40, '...') }}</td>
+                <td>{{ article.publishedAt ? article.publishedAt|date('d-m-Y H:i') : '' }}</td>
+                <td>{{ article.isActive ? 'Publié' : 'Brouillon' }}</td>
+                <td>
+                    <a href="{{ path('article_show', {'id': article.id}) }}">Voir</a>
+                    <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {{ knp_pagination_render(articles) }}
+{% endblock %}
